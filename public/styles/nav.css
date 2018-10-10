@@ -9,15 +9,32 @@ nav {
   padding: 0em 2em;
 }
 
-#nav-bar .logo {
+.logo {
   width: 80px;
   height: 80px;
   float: left;
 }
 
-#nav-bar .header {
+.header {
   margin-left: 10px;
   font-size: 2em;
   float: left;
   line-height: 80px;
+}
+
+nav span {
+  float: right;
+}
+
+.compose:hover {
+  background-color: #88d8c0;
+  color: white;
+  border: solid white 2px;
+}
+
+.compose {
+  margin-top: 15px;
+  color: #00a087;
+  border-radius: 5px;
+  height: 50px;
 }

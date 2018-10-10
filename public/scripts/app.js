@@ -86,9 +86,10 @@ $(document).ready(function() {
   }
 
   function renderTweets(tweets) {
+    $('.new-tweet textarea').val('');
     for (i = 0; i < tweets.length; i++) {
       const article = createTweetElement(tweets[i]);
-      $('.tweets').append(article);
+      $('.tweets').prepend(article);
     }
   }
 
@@ -103,15 +104,20 @@ $(document).ready(function() {
 
 $('.new-tweet form').on('submit', function (event) {
   event.preventDefault();
-  let data = $(event.target).serialize();
-  $.ajax('/tweets', { method: 'POST', data: data})
-  .then(function () {
-    console.log('Success!', data);
-    $('.new-tweet textarea').val('');
-    loadTweets();
-  });
+  let newTweet = $('.new-tweet textarea').val();
+  if (newTweet === "") {
+    alert("Please enter a tweet!");
+  } else if (newTweet.length > 140) {
+    alert("Your tweet must be less than 140 characters.")
+  } else {
+    let data = $(event.target).serialize();
+    $.ajax('/tweets', { method: 'POST', data: data})
+    .then(function () {
+      console.log('Success!', data);
+      loadTweets();
+    });
+  }
 });
-
 
 //Responsible for fetching tweets from the /tweets page and receiving the array of tweets as JSON
 
@@ -123,6 +129,15 @@ function loadTweets() {
 }
 
 loadTweets();
+
+//Toggle the Compose Tweet section upon clicking "Compose"
+
+$('.compose').on('click', function (event) {
+  $('.new-tweet').slideToggle("400", function() {
+    $('.new-tweet textarea').focus();
+    console.log("Slide complete");
+  });
+});
 
 });
 
