@@ -51,14 +51,6 @@ const data = [
   }
 ];
 
-function renderTweets(tweets) {
-  for (let item of tweets) {
-    let article = createTweetElement(item);
-
-  }
-
-}
-
 
 //returns a tweet <article> element containing the entire HTML structure of the tweet
 
@@ -97,7 +89,16 @@ function createTweetElement(tweet) {
   return $tweet;
 }
 
-var $tweet = createTweetElement(tweetData);
+function renderTweets(tweets) {
+  for (i = 0; i < tweets.length; i++) {
+    const article = createTweetElement(tweets[i]);
+    $('.tweets').append(article);
+  }
+}
 
-console.log($tweet); // to see what it looks like
-$('.tweets').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+renderTweets(data);
+
+// var $tweet = createTweetElement(tweetData);
+
+// console.log($tweet); // to see what it looks like
+// $('.tweets').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
