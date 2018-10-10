@@ -1,4 +1,4 @@
-body .container .new-tweet {
+.new-tweet {
   background-color: #eee;
   margin: 2em auto;
   width: 400px;
@@ -8,7 +8,7 @@ body .container .new-tweet {
 
 }
 
-body .container .new-tweet h2 {
+.new-tweet h2 {
   margin-top: 0px;
   border-bottom: 2px solid;
 }
@@ -22,6 +22,12 @@ body .container .new-tweet h2 {
   border: solid #E0E0E0 2px;
 }
 
-body .container .counter {
+.red {
+  color: red;
   float: right;
+}
+
+.counter {
+  float: right;
+  color: black;
 }

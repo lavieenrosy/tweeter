@@ -1,0 +1,52 @@
+.tweets:hover {
+  opacity: 1;
+}
+
+.tweets {
+  background-color: white;
+  width: 400px;
+  margin: 2em auto;
+  border-radius: 10px;
+  border: solid #E0E0E0 2px;
+  opacity: 0.7;
+}
+
+.tweets header {
+  background-color: #eee;
+  height: 70px;
+  border-radius: 10px 10px 0 0;
+}
+
+.tweets h2 {
+  margin-top: 0px;
+  padding-top: 10px;
+  float: left;
+}
+
+.tweets .handle {
+  float: right;
+  line-height: 70px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.tweets .avatar {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 10px;
+}
+
+.tweet-body {
+  margin-left: 10px;
+}
+
+.tweets footer {
+  border-top: solid #E0E0E0 2px;
+/*  height: 40px;*/
+}
+
+.tweets footer p {
+  font-size: 12px;
+  margin-left: 10px;
+}
