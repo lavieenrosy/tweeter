@@ -14,6 +14,7 @@
 }
 
 .new-tweet textarea {
+  max-width: 100%;
   width: 100%;
   border: solid #E0E0E0 2px;
 }
