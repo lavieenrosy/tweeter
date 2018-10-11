@@ -32,3 +32,9 @@
   float: right;
   color: black;
 }
+
+.form-validation {
+  color: red;
+  font-style: italic;
+  margin-bottom: 5px;
+}
