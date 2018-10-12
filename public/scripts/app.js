@@ -28,12 +28,15 @@ $(document).ready(function() {
 
     //create footer tree
 
-    const $createdAt = $("<p>").addClass("created-at").text(moment(tweet.created_at).startOf('day').fromNow());
-    const $flag = $("<img>").addClass("icon").attr("src", "/images/bird.png");
-    const $retweet = $("<img>").addClass("icon").attr("src", "/images/bird.png");
-    const $heart = $("<img>").addClass("icon").attr("src", "/images/bird.png");
+    const $createdAt = $("<p>").addClass("created-at").text(moment(tweet.created_at).startOf('hour').fromNow());
+
+    const $flag = $("<i>").addClass("icon").attr("data-feather", "flag");
+    const $retweet = $("<i>").addClass("icon").attr("data-feather", "repeat");
+    const $heart = $("<i>").addClass("icon").attr("data-feather", "heart");
     const $footer = $("<footer>").append($createdAt).append($flag).append($retweet).append($heart);
 
+
+//<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     //append to article
 
     const $tweet = $("<article>").append($header).append($main).append($footer);
@@ -82,6 +85,8 @@ $('.new-tweet form').on('submit', function (event) {
     $.ajax('/tweets', { method: 'GET'})
     .then(function (data) {
       renderTweets(data);
+      //icon library:
+      feather.replace();
     });
   }
 
