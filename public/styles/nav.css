@@ -42,3 +42,18 @@ nav span {
   border: solid white 2px;
 }
 
+.compose span {
+  margin-top: 4px;
+  margin-right: 2px;
+}
+
+.compose:hover .icon {
+  color: white;
+}
+
+.compose .icon {
+  color: #00a087;
+  width: 30px;
+  float: left;
+}
+
