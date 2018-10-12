@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     //create footer tree
 
-    const $createdAt = $("<p>").addClass("created-at").text(tweet.created_at);
+    const $createdAt = $("<p>").addClass("created-at").text(moment(tweet.created_at).startOf('day').fromNow());
     const $flag = $("<img>").addClass("icon").attr("src", "/images/bird.png");
     const $retweet = $("<img>").addClass("icon").attr("src", "/images/bird.png");
     const $heart = $("<img>").addClass("icon").attr("src", "/images/bird.png");
