@@ -1,8 +1,4 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
+//Client-side JS logic
 
 $(document).ready(function() {
 
@@ -10,8 +6,10 @@ $(document).ready(function() {
 
   $('.form-validation').hide();
 
-  //returns a tweet <article> element containing the entire HTML structure of the tweet
-// function createTweetElement({ user: { avatars, handle }, content, created_at }) {
+  /* ------------------ FUNCTIONS TO CREATE AND RENDER TWEETS ------------------ */
+
+  //returns an <article> element containing the entire HTML structure of the tweet
+
   function createTweetElement(tweet) {
 
     //create header tree
@@ -29,55 +27,29 @@ $(document).ready(function() {
     //create footer tree
 
     const $createdAt = $("<p>").addClass("created-at").text(moment(tweet.created_at).startOf('hour').fromNow());
-
     const $flag = $("<i>").addClass("icon").attr("data-feather", "flag");
     const $retweet = $("<i>").addClass("icon").attr("data-feather", "repeat");
     const $heart = $("<i>").addClass("icon").attr("data-feather", "heart");
     const $footer = $("<footer>").append($createdAt).append($flag).append($retweet).append($heart);
 
-
-//<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-    //append to article
+    //append to <article> element
 
     const $tweet = $("<article>").append($header).append($main).append($footer);
 
     return $tweet;
-  }
+
+  };
+
+  //renders tweets onto '/' and prepends new tweets to the top
 
   function renderTweets(tweets) {
     $('.new-tweet textarea').val('');
+    $('.counter').text('140');
     for (i = 0; i < tweets.length; i++) {
       const article = createTweetElement(tweets[i]);
       $('.tweets').prepend(article);
     }
   }
-
-  // renderTweets(data);
-
-// var $tweet = createTweetElement(tweetData);
-
-// console.log($tweet); // to see what it looks like
-// $('.tweets').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
-
-//Use AJAX to handle POST request upon form submission
-
-$('.new-tweet form').on('submit', function (event) {
-  event.preventDefault();
-  $('.form-validation').hide();
-  let newTweet = $(this).find('textarea').val();
-  if (newTweet === "") {
-    $('.form-validation').text('Please enter a tweet').slideDown("medium");
-  } else if (newTweet.length > 140) {
-    $('.form-validation').text('Your tweet must be less than 140 characters').slideDown("medium");
-  } else {
-    let data = $(this).serialize();
-    $.ajax('/tweets', { method: 'POST', data: data})
-    .then(function () {
-      console.log('Success!', data);
-      loadTweets();
-    });
-  }
-});
 
   //Responsible for fetching tweets from the /tweets page and receiving the array of tweets as JSON
 
@@ -88,9 +60,37 @@ $('.new-tweet form').on('submit', function (event) {
       //icon library:
       feather.replace();
     });
-  }
+  };
 
   loadTweets();
+
+  /* ---------------- EVENT LISTENERS ---------------- */
+
+  //Use AJAX to handle POST request upon form submission
+
+  $('.new-tweet form').on('submit', function (event) {
+    event.preventDefault();
+    $('.form-validation').hide();
+    const newTweet = $(this).find('textarea').val();
+
+    //form validation
+
+    if (newTweet === "") {
+      $('.form-validation').text('Please enter a tweet').slideDown("medium");
+    } else if (newTweet.length > 140) {
+      $('.form-validation').text('Your tweet must be less than 140 characters').slideDown("medium");
+    } else {
+      const data = $(this).serialize();
+
+      //AJAX post request
+
+      $.ajax('/tweets', { method: 'POST', data: data})
+      .then(function () {
+        console.log('Success!', data);
+        loadTweets();
+      });
+    };
+  });
 
   //Toggle the Compose Tweet section upon clicking "Compose"
 
