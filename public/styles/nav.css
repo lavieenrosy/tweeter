@@ -23,7 +23,7 @@ nav {
   line-height: 80px;
 }
 
-/*create a span to capture all nav links*/
+/* Span containing all nav links*/
 
 nav span {
   float: right;
@@ -47,13 +47,12 @@ nav span {
   margin-right: 2px;
 }
 
-.compose:hover .icon {
-  color: white;
-}
-
 .compose .icon {
   color: #00a087;
   width: 30px;
   float: left;
 }
 
+.compose:hover .icon {
+  color: white;
+}
